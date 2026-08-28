@@ -1,5 +1,6 @@
 import type { Express } from "express";
-const { express, cors, corsOptions, connectDatabase } = require("./index");
+const { express, cors, corsOptions, connectDatabase } = require("../config/index");
+require("./index");
 class Server {
   private app: Express;
   private port: number;

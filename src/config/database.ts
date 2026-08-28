@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize, DataTypes, UUID, UUIDV4 } = require("sequelize");
 const env = require("./env");
 
 const sequelize = new Sequelize(env.DATABASE, {
@@ -23,4 +23,8 @@ const connectDatabase = async () => {
 
 module.exports = {
   connectDatabase,
+  DataTypes,
+  sequelize,
+  UUID,
+  UUIDV4,
 };
