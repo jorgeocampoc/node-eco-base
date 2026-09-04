@@ -1,4 +1,4 @@
-const { sequelize, DataTypes, UUID, UUIDV4 } = require("../config/index");
+import { sequelize, DataTypes } from "../config/index";
 const Product = sequelize.define(
   "Product",
   {
@@ -43,4 +43,4 @@ const Product = sequelize.define(
   },
 );
 
-module.exports = Product;
+export default Product;

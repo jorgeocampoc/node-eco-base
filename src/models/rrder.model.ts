@@ -1,4 +1,4 @@
-const { sequelize, DataTypes, UUID, UUIDV4 } = require("../config/index");
+import { sequelize, DataTypes } from "../config/index";
 const Order = sequelize.define(
   "Order",
   {
@@ -20,7 +20,7 @@ const Order = sequelize.define(
       allowNull: false,
       defaultValue: DataTypes.NOW,
       validate: {
-        isDate: true
+        isDate: true,
       },
     },
     status: {
@@ -34,14 +34,12 @@ const Order = sequelize.define(
         min: 0,
       },
     },
-    updated_at: {
-      type: DataTypes.DATE(6),
-    },
   },
   {
     tableName: "orders",
-    timestamps: false,
+    createdAt: "create_at",
+    updatedAt: "updated_at",
   },
 );
 
-module.exports = Order;
+export default Order;

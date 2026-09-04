@@ -1,10 +1,11 @@
-const User = require("./User");
-const Order = require("./Order");
-const OrderItem = require("./OrderItem");
-const Product = require("./Product");
-const Address = require("./Address");
-const Converstions = require("./Conversation");
-const Message = require("./Message");
+import User from "./user.model";
+import Order from "./rrder.model";
+import OrderItem from "./OrderItem";
+import Product from "./Product";
+import Address from "./address.model";
+import Converstions from "./conversation.model";
+import Message from "./message.model";
+import EmailVerifications from "./emailVerifications,model";
 
 // One-To-Many relationships USER-ORDER
 User.hasMany(Order, {
@@ -31,19 +32,17 @@ OrderItem.belongsTo(Product, {
 });
 
 // One-To-Many relationships USER - ADDRESS
-Address.hasOne(User, {
-  foreignKey: "address_id",
+User.hasOne(Address, {
+  foreignKey: "customer_id",
 });
-User.belongsTo(Address, {
-  foreignKey: "address_id",
+Address.belongsTo(User, {
+  foreignKey: "customer_id",
 });
 
 // One-To-Many relationships USER - CONVERSTIONS
 User.belongsToMany(Converstions, {
   through: "users_has_conversations",
   foreignKey: "users_id",
-  createdAt: "create_at",
-  updatedAt: "updated_at",
 });
 Converstions.belongsToMany(User, {
   through: "users_has_conversations",
@@ -58,7 +57,15 @@ Message.belongsTo(Converstions, {
   foreignKey: "conversation_id",
 });
 
-module.exports = {
+// One-To-Many relationships USERS - EMAILVERIFICATION
+User.hasOne(EmailVerifications, {
+  foreignKey: "user_id",
+});
+EmailVerifications.belongsTo(User, {
+  foreignKey: "user_id",
+});
+
+export {
   User,
   Order,
   OrderItem,
@@ -66,4 +73,5 @@ module.exports = {
   Address,
   Converstions,
   Message,
+  EmailVerifications,
 };

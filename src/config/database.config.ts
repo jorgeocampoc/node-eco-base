@@ -1,5 +1,5 @@
-const { Sequelize, DataTypes, UUID, UUIDV4 } = require("sequelize");
-const env = require("./env");
+import { Sequelize, DataTypes } from "sequelize";
+import env from "./env.config";
 
 const sequelize = new Sequelize(env.DATABASE, {
   dialect: "postgres",
@@ -14,17 +14,15 @@ const sequelize = new Sequelize(env.DATABASE, {
 const connectDatabase = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log("Database on");
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
 };
 
-module.exports = {
+export = {
   connectDatabase,
   DataTypes,
   sequelize,
-  UUID,
-  UUIDV4,
 };

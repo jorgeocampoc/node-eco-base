@@ -1,4 +1,4 @@
-const { sequelize, DataTypes } = require("../config/index");
+import { sequelize, DataTypes } from "../config/index";
 const Conversation = sequelize.define(
   "Conversation",
   {
@@ -15,16 +15,12 @@ const Conversation = sequelize.define(
       type: DataTypes.UUID,
       allowNull: false,
     },
-    created_at: {
-      type: DataTypes.DATE(6),
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
   },
   {
     tableName: "conversations",
-    timestamps: false,
+    createdAt: "create_at",
+    updatedAt: "updated_at",
   },
 );
 
-module.exports = Conversation;
+export default Conversation;

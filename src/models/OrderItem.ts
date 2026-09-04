@@ -1,4 +1,4 @@
-const { sequelize, DataTypes } = require("../config/index");
+import { sequelize, DataTypes }from "../config/index";
 const OrderItem = sequelize.define(
   "OrderItem",
   {
@@ -51,4 +51,4 @@ const OrderItem = sequelize.define(
   },
 );
 
-module.exports = OrderItem;
+export default OrderItem;
